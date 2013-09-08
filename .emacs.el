@@ -9,7 +9,9 @@
                       starter-kit-eshell
                       clojure-mode
                       clojure-test-mode
-                      nrepl))
+                      nrepl
+                      yasnippet
+                      yasnippet-bundle))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -42,5 +44,12 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Droid Sans Mono" :foundry "unknown" :slant normal :weight normal :height 83 :width normal))))
  '(show-paren-mismatch ((t (:background "red" :foreground "white"))))
- '(whitespace-line ((t (:background "brown" :foreground "medium blue"))))
+ '(whitespace-line ((t (:background "black" :foreground "red"))))
  '(whitespace-tab ((t (:background "DeepPink1" :foreground "lightgray")))))
+
+(load-theme 'tango)
+(set-default-font " -unknown-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1")
+(yas/global-mode 1)
+(global-set-key (kbd "<f10>") 'yas/insert-snippet)
+(global-set-key (kbd "<f5>") 'compile)
+(define-key python-mode-map (kbd "<f5>") 'python-check)
