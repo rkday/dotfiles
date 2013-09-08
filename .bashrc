@@ -95,7 +95,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 
-EDITOR=emacs
+export EDITOR=emacs
 alias ack='ack-grep'
 PATH=~/bin:$PATH
 TERMINAL=terminator
