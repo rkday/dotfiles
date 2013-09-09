@@ -15,6 +15,9 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+(setq c-default-style "bsd"
+      c-basic-offset 2)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
