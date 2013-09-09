@@ -95,12 +95,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 
-EDITOR=emacs
+export EDITOR=emacs
 alias ack='ack-grep'
 PATH=~/bin:$PATH
 TERMINAL=terminator
-source ~/.git_completion.bash
-source ~/.git_prompt.sh
+source ~/dotfiles/git/contrib/completion/git-completion.bash
+source ~/dotfiles/git/contrib/completion/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
-PS1='\! \e[0;31m\t\e[m \e[0;36m\W\e[m $(__git_ps1 " [\[\e[0;32m\]%s\[\e[0m\]]")\e[0;31m\$\e[m '
+PS1='\! \[\e[0;31m\]\t\[\e[m\] \[\e[0;36m\]\W\[\e[m\] $(__git_ps1 " [\[\e[0;32m\]%s\[\e[0m\]]")\[\e[0;31m\]\$\[\e[0m\] '
