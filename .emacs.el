@@ -11,7 +11,7 @@
                       clojure-test-mode
                       nrepl
                       yasnippet
-                      yasnippet-bundle))
+                      markdown-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -19,6 +19,10 @@
 
 (setq c-default-style "bsd"
       c-basic-offset 2)
+
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -52,7 +56,7 @@
 
 (load-theme 'tango)
 (set-default-font " -unknown-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1")
-(yas/global-mode 1)
+(yas-global-mode 1)
 (global-set-key (kbd "<f10>") 'yas/insert-snippet)
 (global-set-key (kbd "<f5>") 'compile)
 (defun my-python-cfg ()
@@ -70,4 +74,5 @@
 (add-hook 'java-mode-hook       'hs-minor-mode)
 (add-hook 'lisp-mode-hook       'hs-minor-mode)
 (add-hook 'perl-mode-hook       'hs-minor-mode)
+(add-hook 'python-mode-hook       'hs-minor-mode)
 (add-hook 'sh-mode-hook         'hs-minor-mode)
