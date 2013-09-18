@@ -9,3 +9,7 @@
 	autocorrect = 1
 [alias]
 	log2 = log --graph --pretty=format:\"%Cred%h  %C(cyan)%an  %Cgreen%ar  %Creset%s  %C(yellow)%d%Creset\"
+[merge]
+	defaultToUpstream = true
+[push]
+	default = current
