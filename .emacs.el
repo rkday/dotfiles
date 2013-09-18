@@ -60,12 +60,6 @@
 (yas-global-mode 1)
 (global-set-key (kbd "<f10>") 'yas/insert-snippet)
 (global-set-key (kbd "<f5>") 'compile)
-(defun my-python-cfg ()
-  (local-set-key (kbd "<f5>") 'python-check)
-  (hs-hide-initial-comment-block))
-(defun my-c-cfg ()
-  (hs-hide-initial-comment-block))
-(add-hook 'c-mode-common-hook 'my-python-cfg)
 
 (load-library "hideshow")
 (global-set-key (kbd "C-+") 'toggle-hiding)
@@ -77,3 +71,13 @@
 (add-hook 'perl-mode-hook       'hs-minor-mode)
 (add-hook 'python-mode-hook       'hs-minor-mode)
 (add-hook 'sh-mode-hook         'hs-minor-mode)
+
+(defun my-python-cfg ()
+  (local-set-key (kbd "<f5>") 'python-check)
+  )
+(defun my-c-cfg ()
+  )
+(add-hook 'c-mode-common-hook 'my-c-cfg)
+(add-hook 'python-mode-hook 'my-python-cfg)
+
+(add-hook 'hs-minor-mode-hook 'hs-hide-initial-comment-block)
