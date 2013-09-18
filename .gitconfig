@@ -1,0 +1,11 @@
+[user]
+	email = Robert.Day@metaswitch.com
+	name = Rob Day
+[color]
+	ui = true
+[core]
+	whitespace = trailing-space,space-before-tab,indent-with-non-tab
+[help]
+	autocorrect = 1
+[alias]
+	log2 = log --graph --pretty=format:\"%Cred%h  %C(cyan)%an  %Cgreen%ar  %Creset%s  %C(yellow)%d%Creset\"
