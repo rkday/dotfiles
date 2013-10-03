@@ -12,11 +12,20 @@
                       nrepl
                       yasnippet
                       yasnippet-bundle
+                      markdown-mode
                       color-theme-sanityinc-tomorrow))
+
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+(setq c-default-style "bsd"
+      c-basic-offset 2)
+
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -38,7 +47,8 @@
  '(sentence-end-double-space nil)
  '(sentence-end-without-period nil)
  '(tab-always-indent t)
- '(whitespace-action (quote (report-on-bogus))))
+ '(whitespace-action (quote (auto-cleanup)))
+ '(whitespace-line-column 110))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -52,14 +62,9 @@
 (load-theme 'sanityinc-tomorrow-bright)
 (set-default-font "Source Code Pro:pixelsize=11:foundry=adobe:weight=light:slant=normal:width=normal:spacing=100:scalable=true")
 (yas/global-mode 1)
+
 (global-set-key (kbd "<f10>") 'yas/insert-snippet)
 (global-set-key (kbd "<f5>") 'compile)
-(defun my-python-cfg ()
-  (local-set-key (kbd "<f5>") 'python-check)
-  (hs-hide-initial-comment-block))
-(defun my-c-cfg ()
-  (hs-hide-initial-comment-block))
-(add-hook 'c-mode-common-hook 'my-python-cfg)
 
 (load-library "hideshow")
 (global-set-key (kbd "C-+") 'toggle-hiding)
@@ -69,5 +74,17 @@
 (add-hook 'java-mode-hook       'hs-minor-mode)
 (add-hook 'lisp-mode-hook       'hs-minor-mode)
 (add-hook 'perl-mode-hook       'hs-minor-mode)
+(add-hook 'python-mode-hook       'hs-minor-mode)
 (add-hook 'sh-mode-hook         'hs-minor-mode)
+
+
+(defun my-python-cfg ()
+  (local-set-key (kbd "<f5>") 'python-check)
+  )
+(defun my-c-cfg ()
+  )
+(add-hook 'c-mode-common-hook 'my-c-cfg)
+(add-hook 'python-mode-hook 'my-python-cfg)
+
+(add-hook 'hs-minor-mode-hook 'hs-hide-initial-comment-block)
 
