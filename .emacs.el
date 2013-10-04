@@ -71,6 +71,7 @@
 (add-hook 'perl-mode-hook       'hs-minor-mode)
 (add-hook 'python-mode-hook       'hs-minor-mode)
 (add-hook 'sh-mode-hook         'hs-minor-mode)
+(add-hook 'ruby-mode-hook         'hs-minor-mode)
 
 (defun my-python-cfg ()
   (local-set-key (kbd "<f5>") 'python-check)
