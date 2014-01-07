@@ -8,24 +8,42 @@
                       starter-kit-bindings
                       starter-kit-eshell
                       clojure-mode
+                      clojurescript-mode
                       clojure-test-mode
-                      nrepl
+                      clojure-project-mode
+                      cider
                       yasnippet
                       yasnippet-bundle
                       markdown-mode
-                      color-theme-sanityinc-tomorrow))
+                      octave-mod
+                      color-theme-sanityinc-tomorrow
+                      erlang
+                      scala-mode
+                      flymake-haskell-multi
+                      haskell-mode))
 
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
-(setq c-default-style "bsd"
-      c-basic-offset 2)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(setq c-default-style "kr"
+      c-basic-offset 4)
 
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
+
+
+(add-to-list 'auto-mode-alist '("\\.cljx\\'" . paredit-mode))
+(add-to-list 'auto-mode-alist '("\\.cljx\\'" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.cljs\\'" . paredit-mode))
+(add-to-list 'auto-mode-alist '("\\.cljs\\'" . clojure-mode))
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -44,11 +62,15 @@
  '(inhibit-startup-screen t)
  '(kill-whole-line t)
  '(python-check-command "flake8")
+ '(safe-local-variable-values (quote ((whitespace-style quote (face trailing)) (whitespace-line-column . 80) (lexical-binding . t))))
  '(sentence-end-double-space nil)
  '(sentence-end-without-period nil)
  '(tab-always-indent t)
+ '(vc-follow-symlinks t)
  '(whitespace-action (quote (auto-cleanup)))
- '(whitespace-line-column 110))
+ '(whitespace-global-modes t)
+ '(whitespace-line-column 110)
+ '(whitespace-style (quote (face trailing tabs))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -59,8 +81,8 @@
  '(whitespace-line ((t (:background "black" :foreground "red"))))
  '(whitespace-tab ((t (:background "DeepPink1" :foreground "lightgray")))))
 
-(load-theme 'sanityinc-tomorrow-bright)
-(set-default-font "Source Code Pro:pixelsize=11:foundry=adobe:weight=light:slant=normal:width=normal:spacing=100:scalable=true")
+(load-theme 'misterioso)
+(set-default-font "Source Code Pro:pixelsize=15:foundry=adobe:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
 (yas/global-mode 1)
 
 (global-set-key (kbd "<f10>") 'yas/insert-snippet)
@@ -82,9 +104,14 @@
 (defun my-python-cfg ()
   (local-set-key (kbd "<f5>") 'python-check)
   )
-(defun my-c-cfg ()
-  )
-(add-hook 'c-mode-common-hook 'my-c-cfg)
+
+(defun my-markdown-cfg ()
+  (auto-fill-mode -1)
+  (global-whitespace-mode nil)
+  (whitespace-line-column 0)
+  (whitespace-line ((t (:background "white" :foreground "black")))))
+
+(add-hook 'markdown-mode-hook 'my-markdown-cfg)
 (add-hook 'python-mode-hook 'my-python-cfg)
 
 (add-hook 'hs-minor-mode-hook 'hs-hide-initial-comment-block)
